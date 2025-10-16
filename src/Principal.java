@@ -1,3 +1,6 @@
+import br.com.alura.screenmatch.calculos.CalculadoraDeTempo;
+import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
+import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 
@@ -26,7 +29,9 @@ public class Principal {
         meuFilme.avalia(9);
         meuFilme.avalia(9);
         // Exibe o total de avaliações realizadas.
-        // System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
+        System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
+        System.out.println("Média das avaliações: " + meuFilme.pegaMedia());
+
 
         Serie friends = new Serie();
         friends.setNome("Friends");
@@ -36,7 +41,29 @@ public class Principal {
         friends.setMinutosPorEpisodio(30);
         friends.setEpisodiosPorTemporada(24);
         System.out.println("Duração para maratonar Friends: " + friends.getDuracaoEmMinutos());
+
+        Filme filmeDois = new Filme();
+
+        filmeDois.setNome("O resgate do soldado Ryan");
+        filmeDois.setAnoDeLancamento(1998);
+        filmeDois.setDuracaoEmMinutos(210);
+
+        CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
+        calculadora.inclui(meuFilme);
+        calculadora.inclui(filmeDois);
+        calculadora.inclui(friends);
+        System.out.println(calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(meuFilme);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(friends);
+        episodio.setTotalDeVisualizacoes(300);
+        filtro.filtra(episodio);
     }
+
 }
 
 
